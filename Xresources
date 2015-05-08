@@ -1,0 +1,169 @@
+! Font settings
+Xft.autohint:  0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting:   1
+Xft.antialias: 1
+Xft.dpi:       96
+Xft.rgba:      rgb
+
+! Cursor style
+Xcursor.theme: Vanilla-DMZ-AA
+Xcursor.size:  22
+
+! Disable ctrl-shift keycap picture insert mode
+URxvt.iso14755:    false
+URxvt.iso14755_52: false
+
+! Scrollback buffer lines - 65535 is max on most machines (64 is default)
+URxvt*saveLines: 128
+
+! General settings
+URxvt.saveLines: 2000
+URxvt.scrollBar: False
+URxvt.scrollstyle: rxvt
+URxvt.termName: xterm-256color
+URxvt.urgentOnBell: True
+URxvt.cursorBlink: False
+
+! Extensions
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+URxvt.urlLauncher: xdg-open
+URxvt.urlButton: 1
+URxvt.underlineURLs: True
+
+URxvt.copyCommand:  xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
+! Keybindings
+URxvt.keysym.Mod4-c: perl:clipboard:copy
+URxvt.keysym.Mod4-v: perl:clipboard:paste
+URxvt.keysym.Mod4-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-u: perl:url-select:select_next
+
+! Fonts
+
+!Courier
+!URxvt.font: xft:Courier-10
+
+!Inconsolata
+URxvt.font: xft:Inconsolata-12
+URxvt.boldFont: xft:Inconsolata-12
+URxvt.letterSpace: -1
+
+!Inconsolata-g
+!URxvt.font: xft:InconsolataG-10
+!URxvt.letterSpace: -1
+
+!Anonymous Pro
+!URxvt.font: xft:Anonymous\ Pro-12
+!URxvt.letterSpace: -1
+
+!Monaco
+!URxvt.font: xft:Monaco-10
+!URxvt.letterSpace: -1
+
+!Droid Sans Mono
+!URxvt.font: xft:Droid Sans Mono-10
+!URxvt.letterSpace: -1
+
+!DejaVu Sans
+!URxvt.font: xft:DejaVu Sans Mono-10
+!URxvt.letterSpace: -1
+
+!Manospace
+!URxvt.font: xft:Monospace-10
+!URxvt.letterSpace: -1
+
+!Terminus
+!URxvt.font: xft:Terminus-10
+
+! Tango theme
+
+URxvt*depth: 32
+URxvt.background: [85]#1C1C1C
+URxvt.foreground: #DEDEDE
+
+! black
+URxvt.color0  : #2E3436
+URxvt.color8  : #555753
+! red
+URxvt.color1  : #CC0000
+URxvt.color9  : #EF2929
+! green
+URxvt.color2  : #4E9A06
+URxvt.color10 : #8AE234
+! yellow
+URxvt.color3  : #C4A000
+URxvt.color11 : #FCE94F
+! blue
+URxvt.color4  : #3465A4
+URxvt.color12 : #729FCF
+! magenta
+URxvt.color5  : #75507B
+URxvt.color13 : #AD7FA8
+! cyan
+URxvt.color6  : #06989A
+URxvt.color14 : #34E2E2
+! white
+URxvt.color7  : #D3D7CF
+URxvt.color15 : #EEEEEC
+
+! ! URxvt extensions
+! URxvt.perl-ext-common:  default,clipboard-osc,matcher
+! URxvt.url-launcher:     firefox
+! URxvt.keysym.M-Delete:  perl:matcher:list
+! URxvt.matcher.button:   2
+
+! URxvt style settings
+! URxvt*font:	-*-terminus-medium-*-*-*-14-*-*-*-*-*-*-*
+! URxvt*font:	Inconsolata
+
+! URxvt*depth:          32
+! URxvt*background:     [85]#0c0d0e
+! URxvt*foreground:     #7f8f9f
+! URxvt*scrollBar:      false
+! URxvt*matcher.button: 1
+! URxvt.transparent:    false
+! URxvt*allow_bold:     true
+
+URxvt*geometry:       85x16
+URxvt*fading:         0
+URxvt*tintColor:      #ffffff
+URxvt*shading:        0
+URxvt*inheritPixmap:  False
+
+! ! Colors for man pages
+! URxvt.colorIT:     #87af5f
+! URxvt.colorBD:     #d7d7d7
+! URxvt.colorUL:     #87afd7
+
+! ! black + red
+!  URxvt*color0:      #101010
+! URxvt*color1:      #705050
+! ! green + yellow
+! URxvt*color2:      #60b48a
+! URxvt*color3:      #f0dfaf
+! ! blue + purple
+! URxvt*color4:      #506070
+! URxvt*color5:      #dc8cc3
+! ! cyan + white
+! URxvt*color6:      #8cd0d3
+! URxvt*color7:      #dcdccc
+! ! bright-black + bright-red
+! URxvt*color8:      #333333
+! URxvt*color9:      #dca3a3
+! ! bright-green + bright-yellow
+! URxvt*color10:     #c3bf9f
+! URxvt*color11:     #f0dfaf
+! ! bright-blue + bright-purple
+! URxvt*color12:     #94bff3
+! URxvt*color13:     #ec93d3
+! ! bright-cyan + bright-white
+! URxvt*color14:     #93e0e3
+
