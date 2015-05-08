@@ -3,7 +3,8 @@
 -- My xmonad config file.
 --
 -- This is made by changing the template showing all available
--- configuration hooks, and how to change them.
+-- configuration hooks, and how to change them plus a selection of
+-- parts from various configs on github
 
 import XMonad
 import XMonad.Layout.Spacing
@@ -14,7 +15,13 @@ import Data.Monoid
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.DynamicLog
 import System.Exit
+import XMonad.Prompt
+import XMonad.Prompt.Shell
+import XMonad.Prompt.Ssh
+import XMonad.Prompt.Window
 
+import qualified XMonad.Actions.Submap as SM
+import qualified XMonad.Actions.Search as S
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -50,6 +57,56 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 
+-- colors
+myFgColor       = "#888888"
+myFgHLight      = "#FFFFFF"
+myFgDimLight    = "#505050"
+myTextHLight    = "#FAFAC0"
+myNotifyColor   = "#F39D21"
+myWarningColor  = "#D23D3D"
+
+myBgColor       = "#181512"
+myBgDimLight    = "#333333"
+myBgHLight      = "#4C7899"
+myBorderColor   = "#222222"
+myBorderHLight  = "#285577"
+
+myFont          = "xft:Inconsolata:pixelsize=14"
+
+myXPConfig :: XPConfig
+myXPConfig = defaultXPConfig
+             { font        = myFont
+             , bgColor     = myBgColor
+             , fgColor     = myFgColor
+             , fgHLight    = myFgHLight
+             , bgHLight    = myBgHLight
+             , borderColor = myBorderColor
+             , position    = Top
+             }
+
+myWindowXPConfig = myXPConfig
+                   { autoComplete = Just 500000
+                   , bgColor  = "#ffdead"
+                   , fgColor  = "#666666"
+                   }
+
+mySshXPConfig = myXPConfig
+                { bgColor  = "#4682b4"
+                , fgColor  = "#eeeeee"
+                }
+
+mySearchXPConfig = myXPConfig
+                   {fgColor = "#6A6AFF"
+                   }
+
+searchEngineMap method = M.fromList $
+       [ ((0, xK_g), method S.google)
+       , ((0, xK_h), method S.hoogle)
+       , ((0, xK_d), method S.dictionary)
+       , ((0, xK_y), method S.youtube)
+       , ((0, xK_w), method S.wikipedia)
+       ]
+
 myTheme = defaultTheme {
         activeColor = blue
         , inactiveColor = grey
@@ -57,13 +114,12 @@ myTheme = defaultTheme {
         , inactiveBorderColor = grey
         , activeTextColor = "white"
         , inactiveTextColor = "black"
-        --, fontName = "-lfp-zin-*-*-*-*-9-*-*-*-*-*-*-*"
-        -- , fontName = "-misc-fixed-*-*-*-*-16-*-*-*-*-*-*-*"
+        , fontName = "xft:inconsolata:size=12"
         , decoHeight = 16
-}
-        where
-                blue = "#4a708b"
-                grey = "#cccccc"
+        }
+  where
+    blue = "#4a708b"
+    grey = "#cccccc"
 
 ------------------------------------------------------------------------
 -- The help string
@@ -124,79 +180,88 @@ help = unlines [
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm .|. shiftMask,       xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'xft:Inconsolata 12'")
+    -- , ((modm,                     xK_p     ), spawn "dmenu_run -fn 'xft:Inconsolata 12'")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- , ((modm .|. shiftMask,       xK_p     ), spawn "gmrun")
 
     -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
+    , ((modm .|. shiftMask,       xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((modm,                     xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ((modm .|. shiftMask,       xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+    , ((modm,                     xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm,                     xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ((modm,                     xK_j     ), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm,                     xK_k     ), windows W.focusUp  )
 
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    , ((modm,                     xK_m     ), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
+    , ((modm,                     xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((modm .|. shiftMask,       xK_j     ), windows W.swapDown  )
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask,       xK_k     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ((modm,                     xK_h     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ((modm,                     xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm,                     xK_t     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
+    , ((modm,                     xK_comma ), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+    , ((modm,                     xK_period), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    -- , ((modm              ,    xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    , ((modm .|. shiftMask,       xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm              ,       xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
-      -- Run xmessage with a summary of the default keybindings (useful for beginners)
+    -- Run xmessage with a summary of the default keybindings (useful for beginners)
     -- , ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
 
+    -- Prompts
+    , ((modm .|. controlMask,     xK_x     ), shellPrompt myXPConfig)
+    , ((modm .|. controlMask,     xK_s     ), sshPrompt mySshXPConfig)
+    , ((modm .|. shiftMask,       xK_g     ), windowPromptGoto myWindowXPConfig)
+    , ((modm .|. shiftMask,       xK_b     ), windowPromptBring myWindowXPConfig)
+
+    -- Search commands
+    , ((modm, xK_s), SM.submap $ searchEngineMap $ S.promptSearch mySearchXPConfig)
+    , ((modm .|. shiftMask, xK_s), SM.submap $ searchEngineMap $ S.selectSearch)
     --take a screenshot of entire display
-    , ((modm , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
+    , ((modm ,                    xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
 
     --take a screenshot of focused window
     , ((modm .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u")
@@ -252,7 +317,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 myLayout = tiled ||| Mirror tiled ||| Full ||| -- simpleTabbed |||
-           tabbed shrinkText (theme donaldTheme) |||
+           tabbed shrinkText myTheme |||
            magnifier (Tall 1 (3/100) (1/2))
   where
      -- default tiling algorithm partitions the screen into two panes
