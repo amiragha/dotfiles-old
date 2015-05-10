@@ -29,6 +29,7 @@ import qualified Data.Map        as M
 -- and by certain contrib modules.  Note that the daemon should be
 -- started (e.g. in .xinitrc)
 myTerminal      = "urxvtc"
+myShell         = "zsh"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool

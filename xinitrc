@@ -24,7 +24,7 @@ fi
 #export PATH=$HOME/.bin:$PATH
 
 # Starting the rxvt-unicode daemon
-urxvtd -q -f -o
+urxvtd -q -f -o &
 
 # Enable compositing using
 compton -CGb &
