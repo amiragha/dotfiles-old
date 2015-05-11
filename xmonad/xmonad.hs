@@ -12,6 +12,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Magnifier
 import XMonad.Util.Themes
 import Data.Monoid
+import Data.Ratio
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.DynamicLog
 import System.Exit
@@ -19,6 +20,7 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.Ssh
 import XMonad.Prompt.Window
+import XMonad.Actions.Warp
 
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Actions.Search as S
@@ -266,6 +268,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     --take a screenshot of focused window
     , ((modm .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u")
+    -- @@ Move pointer to currently focused window
+    , ((modm,   xK_z     ), warpToWindow (1%2) (1%2))
     ]
     ++
 
