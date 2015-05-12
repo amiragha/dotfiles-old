@@ -41,8 +41,8 @@ URxvt.urlButton:         1
 URxvt.underlineURLs:     True
 
 ! Keybindings
-URxvt.keysym.Shift-C-c:  perl:clipboard:copy
-URxvt.keysym.Shift-C-v:  perl:clipboard:paste
+URxvt.keysym.Shift-Control-C:  perl:clipboard:copy
+URxvt.keysym.Shift-Control-V:  perl:clipboard:paste
 URxvt.keysym.M-Escape:   perl:keyboard-select:activate
 URxvt.keysym.C-Escape:   perl:keyboard-select:activate
 URxvt.keysym.M-u:        perl:url-select:select_next
@@ -52,10 +52,6 @@ URxvt.keysym.M-u:        perl:url-select:select_next
 ! Inconsolata
 URxvt.font:              xft:Inconsolata-12
 URxvt.boldFont:          xft:Inconsolata-12
-URxvt.letterSpace:       -1
-
-! Anonymous-Pro
-URxvt.font:              xft:Anonymous\ Pro-12
 URxvt.letterSpace:       -1
 
 ! Tango theme
