@@ -50,9 +50,10 @@ URxvt.keysym.M-u:        perl:url-select:select_next
 ! Fonts
 
 ! Inconsolata
-URxvt.font:              xft:Inconsolata-12
-URxvt.boldFont:          xft:Inconsolata-12
-URxvt.letterSpace:       -1
+URxvt*font:              xft:Inconsolata\ for\ Powerline:size=12
+!URxvt.font:              xft:Inconsolata:Medium-12
+!URxvt.boldFont:          xft:Inconsolata:Medium-12
+!URxvt.letterSpace:       -1
 
 ! Tango theme
 
