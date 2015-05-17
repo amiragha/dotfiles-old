@@ -23,6 +23,9 @@ fi
 #xxkb &
 #export PATH=$HOME/.bin:$PATH
 
+# Keyboard layouts
+setxkbmap us,ir -option grp:shifts_toggle
+
 # Starting the rxvt-unicode daemon
 urxvtd -q -f -o &
 
