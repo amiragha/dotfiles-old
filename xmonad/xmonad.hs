@@ -15,12 +15,16 @@ import Data.Monoid
 import Data.Ratio
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import System.Exit
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.Ssh
 import XMonad.Prompt.Window
 import XMonad.Actions.Warp
+-- import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.EwmhDesktops (ewmh)
+import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Actions.Search as S
@@ -242,8 +246,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              ,    xK_b     ), sendMessage ToggleStruts)
+
+    , ((modm              ,    xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask,       xK_q     ), io (exitWith ExitSuccess))
@@ -321,9 +325,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full ||| -- simpleTabbed |||
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| -- simpleTabbed |||
            tabbed shrinkText myTheme |||
            magnifier (Tall 1 (3/100) (1/2))
+           )
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = spacing 8 $ Tall nmaster delta ratio
@@ -352,7 +357,7 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| -- simpleTabbed |||
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
+myManageHook = manageDocks <> composeAll
                [ className =? "MPlayer"        --> doFloat
                , className =? "Gimp"           --> doFloat
                , resource  =? "desktop_window" --> doIgnore
@@ -394,7 +399,8 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< xmobar defaults
+-- main = xmonad =<< xmobar defaults
+main = xmonad $ ewmh $ pagerHints $ defaults
 -- main = xmonad defaults
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

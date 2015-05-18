@@ -38,5 +38,15 @@ xsetroot -cursor_name left_ptr
 # set background
 sh ~/.fehbg &
 
+# Starting Dbus
+eval `dbus-launch --auto-syntax`
+
+# Starting taffybar &
+taffybar &
+
+# nm-applet & volume icon
+volumeicon &
+nm-applet &
+
 # finally Starting xmonad
 xmonad
