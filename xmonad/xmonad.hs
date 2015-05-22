@@ -34,7 +34,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below
 -- and by certain contrib modules.  Note that the daemon should be
 -- started (e.g. in .xinitrc)
-myTerminal      = "urxvtc"
+myTerminal      = "SHELL=/usr/bin/fish urxvtc"
 myShell         = "zsh"
 
 -- Whether focus follows the mouse pointer.
