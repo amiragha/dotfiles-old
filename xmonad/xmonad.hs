@@ -26,6 +26,8 @@ import XMonad.Actions.Warp
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
+import Graphics.X11.ExtraTypes.XF86
+
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Actions.Search as S
 import qualified XMonad.StackSet as W
@@ -267,6 +269,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Search commands
     , ((modm, xK_s), SM.submap $ searchEngineMap $ S.promptSearch mySearchXPConfig)
     , ((modm .|. shiftMask, xK_s), SM.submap $ searchEngineMap $ S.selectSearch)
+
+    -- Volume control keys
+    , ((0 , xF86XK_AudioLowerVolume), spawn "amixer set Master 5%-")
+    , ((0 , xF86XK_AudioRaiseVolume), spawn "amixer set Master 5%+")
+    , ((0 , xF86XK_AudioMute), spawn "amixer set Master toggle && amixer set Headphone toggle")
+
     --take a screenshot of entire display
     , ((modm ,                    xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
 
