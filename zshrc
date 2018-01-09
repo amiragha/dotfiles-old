@@ -78,14 +78,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias et='emacsclient -a "" -t'
-alias ec='emacsclient -a "" -c'
+alias ec='emacsclient -a "" -cn'
 alias vi='emacsclient -a "" -t'
 alias killemacs='emacsclient --eval "(progn (kill-emacs))"'
 
-ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
+# # some old oh-my-zsh stuff
+# ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
+# if [[ ! -d $ZSH_CACHE_DIR ]]; then
+#   mkdir $ZSH_CACHE_DIR
+# fi
 
-source $ZSH/oh-my-zsh.sh
-archey
+# source $ZSH/oh-my-zsh.sh
+archey3

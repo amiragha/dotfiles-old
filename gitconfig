@@ -1,0 +1,5 @@
+[user]
+	name = Amir M-Aghaei
+	email = amir.maghaei@gmail.com
+[core]
+	editor = emacsclient -t -a=
