@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/zsh
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -24,16 +24,16 @@ fi
 #export PATH=$HOME/.bin:$PATH
 
 # Keyboard layouts
-setxkbmap us,ir -option grp:shifts_toggle
+setxkbmap us,ir -option grp:shifts_toggle &
 
 # Starting the rxvt-unicode daemon
-urxvtd -q -f -o &
+#urxvtd -q -f -o &
 
 # Enable compositing using
 compton -CGb &
 
 # set cursor
-xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr &
 
 # set background
 sh ~/.fehbg &
@@ -42,11 +42,12 @@ sh ~/.fehbg &
 eval `dbus-launch --auto-syntax`
 
 # Starting taffybar &
-taffybar &
+#taffybar &
 
 # nm-applet & volume icon
 volumeicon &
 nm-applet &
 
-# finally Starting xmonad
-xmonad
+# finally Starting the window manager
+#xmonad
+exec i3

@@ -49,7 +49,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.cabal/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 

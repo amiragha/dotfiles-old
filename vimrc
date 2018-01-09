@@ -1,5 +1,9 @@
 " Basic settings
-set nocompatible              " Eliminate backwards-compatability
-set number                    " Enable line numbers
-set ruler                     " Turn on the ruler
-syntax on                     " Syntax highlighting
+set nocompatible
+filetype plugin on
+syntax on
+" set number
+" set ruler
+
+let g:zenburn_high_Contrast=0
+color zenburn

@@ -50,8 +50,9 @@ URxvt.keysym.M-u:        perl:url-select:select_next
 ! Fonts
 
 ! Inconsolata
-URxvt*font:              xft:Inconsolata\ for\ Powerline:size=12
-!URxvt.font:              xft:Inconsolata:Medium-12
+!URxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+!URxvt*font:              xft:Inconsolata\ for\ Powerline:size=12
+URxvt.font:              xft:Inconsolata:Medium-12
 !URxvt.boldFont:          xft:Inconsolata:Medium-12
 !URxvt.letterSpace:       -1
 
@@ -85,3 +86,6 @@ URxvt.color14:           #34E2E2
 ! white
 URxvt.color7:            #D3D7CF
 URxvt.color15:           #EEEEEC
+
+! rofi stuff
+rofi.terminal:          termite

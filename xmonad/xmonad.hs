@@ -7,12 +7,14 @@
 -- parts from various configs on github
 
 import XMonad
+import XMonad.Config.Desktop
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Magnifier
 import XMonad.Util.Themes
 import Data.Monoid
 import Data.Ratio
+import Data.Default
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -23,8 +25,8 @@ import XMonad.Prompt.Ssh
 import XMonad.Prompt.Window
 import XMonad.Actions.Warp
 -- import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.EwmhDesktops (ewmh)
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+import XMonad.Hooks.EwmhDesktops
+-- import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -333,10 +335,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| -- simpleTabbed |||
-           tabbed shrinkText myTheme |||
-           magnifier (Tall 1 (3/100) (1/2))
-           )
+myLayout = avoidStruts (tiled |||
+                        Mirror tiled |||
+                        Full |||
+                        -- simpleTabbed |||
+                        tabbed shrinkText myTheme |||
+                        magnifier (Tall 1 (3/100) (1/2))
+                       )
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = spacing 8 $ Tall nmaster delta ratio
@@ -380,8 +385,8 @@ myManageHook = manageDocks <> composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
-
+-- myEventHook = mempty
+myEventHook = handleEventHook desktopConfig <+> fullscreenEventHook
 ------------------------------------------------------------------------
 -- Status bars and logging
 
@@ -407,8 +412,8 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
--- main = xmonad =<< xmobar defaults
-main = xmonad $ ewmh $ pagerHints $ defaults
+main = xmonad =<< xmobar defaults
+-- main = xmonad $ ewmh $ pagerHints $ defaults
 -- main = xmonad defaults
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -416,7 +421,7 @@ main = xmonad $ ewmh $ pagerHints $ defaults
 --
 -- No need to modify this.
 --
-defaults = defaultConfig {
+defaults = desktopConfig {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
