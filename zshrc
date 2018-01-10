@@ -82,11 +82,11 @@ alias ec='emacsclient -a "" -cn'
 alias vi='emacsclient -a "" -t'
 alias killemacs='emacsclient --eval "(progn (kill-emacs))"'
 
-# # some old oh-my-zsh stuff
-# ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
-# if [[ ! -d $ZSH_CACHE_DIR ]]; then
-#   mkdir $ZSH_CACHE_DIR
-# fi
+# some old oh-my-zsh stuff
+ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
 
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 archey3
