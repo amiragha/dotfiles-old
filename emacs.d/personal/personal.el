@@ -48,6 +48,12 @@
 ;; Enabling yasnippet global mode
 (yas-global-mode +1)
 
+;; multiple cursor package, there are some more useful features
+(prelude-require-package 'multiple-cursors)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 (provide 'personal)
 
 ;;; personal.el ends here
