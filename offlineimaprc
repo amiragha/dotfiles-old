@@ -1,0 +1,52 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+# comma separated accounts
+accounts = Gmail
+# Controls how many accounts may be synced simultaneously
+maxsyncaccounts = 1
+
+pythonfile = ~/.offlineimap.py
+
+# one Account clause per defined account
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+# Minutes between syncs
+autorefresh = 0.5
+# Quick-sync between full refreshs
+quick = 10
+
+# sync only recent
+maxage = 2017-12-30
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/Gmail
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = amir.maghaei@gmail.com
+remotepasseval = get_pass("Gmail")
+nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+                               re.sub ('sent_mail', 'sent',
+                               re.sub ('starred', 'flagged',
+                               re.sub (' ', '_', foldername.lower()))))
+
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+# Necessary as of OfflineIMAP 6.5.4
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+createfolders = False
+
+# if autorefresh is set, hold the connection open
+keepalive = 60
+holdconnectionopen = yes
+
+# configuration with xoauth2 Google API
+# auth_mechanisms = XOAUTH2
+# oauth2_client_id = <CLIENT_ID>
+# oauth2_client_secret = <CLIENT_SECRET>
+# oauth2_request_url = https://accounts.google.com/o/oauth2/token
+# oauth2_refresh_token = <REFRESH_TOKEN>
