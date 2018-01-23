@@ -58,8 +58,12 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(90 . 50))
 ;; (add-to-list 'default-frame-alist '(alpha . (90 . 50)))
 
+;; keychain package -- doesn't work here !!!
 (prelude-require-package 'keychain-environment)
 (keychain-refresh-environment)
+
+;; Add outline-minor-mode emacs
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)
 
 (provide 'personal)
 
