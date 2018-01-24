@@ -65,6 +65,9 @@
 ;; Add outline-minor-mode emacs
 (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
 
+;; Dictionary RFC 2229
+(prelude-require-package 'dictionary)
+
 (provide 'personal)
 
 ;;; personal.el ends here
