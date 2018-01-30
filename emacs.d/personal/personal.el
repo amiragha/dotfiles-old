@@ -61,11 +61,20 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(90 . 50))
 ;; (add-to-list 'default-frame-alist '(alpha . (90 . 50)))
 
+;; keychain package -- doesn't work here !!!
 (prelude-require-package 'keychain-environment)
 (keychain-refresh-environment)
 
+<<<<<<< HEAD
 ;; stuff
 (prelude-require-package 'chess)
+=======
+;; Add outline-minor-mode emacs
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+
+;; Dictionary RFC 2229
+(prelude-require-package 'dictionary)
+>>>>>>> fe614ad60247c4cc10f34abc11d6bdd26f300620
 
 (provide 'personal)
 
