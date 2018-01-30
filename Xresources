@@ -87,5 +87,6 @@ URxvt.color14:           #34E2E2
 URxvt.color7:            #D3D7CF
 URxvt.color15:           #EEEEEC
 
-! rofi stuff
+! making rofi use termite for ssh
 rofi.terminal:          termite
+rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"

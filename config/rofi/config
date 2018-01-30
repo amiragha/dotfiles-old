@@ -1,0 +1,11 @@
+rofi.modi:                           window,run,ssh
+rofi.width:                          60
+rofi.lines:                          15
+rofi.columns:                        1
+rofi.font:                           mono 12
+rofi.bw:                             1
+rofi.location:                       0
+
+! Set the desired separator style
+rofi.separator-style: solid
+rofi.theme: ~/.config/rofi/theme.rasi
