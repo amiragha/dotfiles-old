@@ -16,8 +16,11 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
-;; Enabling CDLatex for org mode-line
+;; enable latex highlights for equations inside org-mode
+(eval-after-load 'org
+  '(setf org-highlight-latex-and-related '(latex)))
 
+;; Enabling CDLatex for org mode-line
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 ;; (add-to-list 'cdlatex-math-modify-alist '(?o "\\operatorname" nil t t nil))
 
@@ -60,6 +63,9 @@
 
 (prelude-require-package 'keychain-environment)
 (keychain-refresh-environment)
+
+;; stuff
+(prelude-require-package 'chess)
 
 (provide 'personal)
 
