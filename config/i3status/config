@@ -44,9 +44,9 @@ format_down = " "
 battery all {
   format = "%status %percentage %remaining"
   format_down = ""
-  status_chr = "CHR"
+  status_chr = ""
   status_bat = ""
-  status_unk = ""
+  status_unk = ""
   status_full = ""
   low_threshold = 20
 }    
@@ -64,7 +64,7 @@ volume master {
 }
 
 load {
-    format = "%1min"
+    format = " %1min"
 }
 
 cpu_usage {
@@ -72,10 +72,11 @@ cpu_usage {
 }
 
 disk "/" {
-    format = "\\ (%avail/%total)"
+    format = "\\ %percentage_avail"
     low_threshold = 5
 }
 
 disk "/home" {
-    format = "\\home (%avail/%total)"
+    format = "\\home %percentage_avail"
+    low_threshold = 2
 }
