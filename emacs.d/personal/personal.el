@@ -65,16 +65,14 @@
 (prelude-require-package 'keychain-environment)
 (keychain-refresh-environment)
 
-<<<<<<< HEAD
 ;; stuff
 (prelude-require-package 'chess)
-=======
+
 ;; Add outline-minor-mode emacs
 (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
 
 ;; Dictionary RFC 2229
 (prelude-require-package 'dictionary)
->>>>>>> fe614ad60247c4cc10f34abc11d6bdd26f300620
 
 (provide 'personal)
 
