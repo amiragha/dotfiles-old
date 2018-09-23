@@ -1,6 +1,6 @@
 ;; included in emacs >= 26 under the name auth-source-pass
-(prelude-require-package 'auth-password-store)
-(auth-pass-enable)
+(prelude-require-package 'auth-source-pass)
+(auth-source-pass-enable)
 
 (require 'mu4e)
 

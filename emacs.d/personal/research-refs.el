@@ -29,4 +29,5 @@
         (inproceedings . "${=has-notes=:1}${=has-pdf=:1} ${=type=:3} ${year:4} ${author:24}  ${title:*} ${booktitle:16}")
         (t             . "${=has-notes=:1}${=has-pdf=:1} ${=type=:3} ${year:4} ${author:24}  ${title:*}")))
 
-(define-key helm-command-map (kbd "x") 'helm-bibtex)
+(with-eval-after-load 'helm
+  (define-key helm-command-map (kbd "x") 'helm-bibtex))
