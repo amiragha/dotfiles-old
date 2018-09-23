@@ -1,14 +1,14 @@
 (prelude-require-package 'helm-bibtex)
 
 (setq bibtex-completion-bibliography
-      '("~/Research/Refs/refs.bib"))
+      '("~/research/refs/refs.bib"))
 
 (setq bibtex-completion-library-path
-      '("~/Research/Refs/pdfs"))
+      '("~/research/refs/pdfs"))
 (setq bibtex-completion-pdf-field "File")
 
 (setq bibtex-completion-notes-path
-      "~/Research/Refs/notes")
+      "~/research/refs/notes")
 
 (setq bibtex-completion-additional-search-fields
       '(journal booktitle abstract keywords))
