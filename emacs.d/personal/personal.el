@@ -74,6 +74,9 @@
 ;; Dictionary RFC 2229
 (prelude-require-package 'dictionary)
 
+;; Look up for dictcc
+(prelude-require-package 'dictcc)
+
 (provide 'personal)
 
 ;;; personal.el ends here
