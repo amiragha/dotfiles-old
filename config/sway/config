@@ -17,13 +17,16 @@ set $right l
 # Your preferred terminal emulator
 set $term termite
 
-	# Your preferred application launcher
-set $menu exec rofi -show run -font "terminus 8" -bg black -fg white -hlbg "#1277b1" -hlgf white -location 1 -lines 2 -bw 0 -no-levenshtein-sort -lazy-filter-limit 5500
+# # Your preferred application launcher
+
+bindsym $mod+Ctrl+x exec rofi -show run
+bindsym $mod+Ctrl+s exec rofi -show ssh
+bindsym $mod+Ctrl+w exec rofi -show window
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
-output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
