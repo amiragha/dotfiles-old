@@ -38,6 +38,7 @@ bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
+bindsym $mod+Ctrl+d exec rofi -show drun -show-icons
 bindsym $mod+Ctrl+x exec rofi -show run
 bindsym $mod+Ctrl+s exec rofi -show ssh
 bindsym $mod+Ctrl+w exec rofi -show window

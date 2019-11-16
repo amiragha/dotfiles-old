@@ -1,10 +1,14 @@
-rofi.modi:                           window,run,ssh
+rofi.modi:                           window,run,ssh,drun
 rofi.width:                          60
 rofi.lines:                          15
 rofi.columns:                        1
 rofi.font:                           mono 12
 rofi.bw:                             1
 rofi.location:                       0
+
+rofi.run-command:          /bin/zsh -i -c '{cmd}'
+rofi.ssh-client:           ssh
+rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"
 
 ! Set the desired separator style
 rofi.separator-style: solid
