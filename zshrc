@@ -50,6 +50,7 @@ plugins=(git)
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.cabal/bin:$PATH
+PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
