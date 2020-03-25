@@ -1,7 +1,11 @@
 " Basic settings
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 syntax on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " set number
 " set ruler
 
